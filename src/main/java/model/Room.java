@@ -27,6 +27,10 @@ public class Room {
         return activeId;
     }
 
+    public void setActiveId(long activeId) {
+        this.activeId = activeId;
+    }
+
     @Override
     public String toString() {
         return "Phong: " + id +
@@ -34,4 +38,6 @@ public class Room {
                 ", activeId=" + activeId +
                 '}';
     }
+
+
 }

@@ -13,6 +13,9 @@ public class Category {
         this.money = money;
     }
 
+    public Category(long id, String name, double money) {
+    }
+
     public long getId() {
         return id;
     }
