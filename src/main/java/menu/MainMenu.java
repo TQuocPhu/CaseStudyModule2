@@ -145,12 +145,13 @@ public class MainMenu {
                             Category category = getCategoryById(room.getCategoryId());
                             String categoryName = category != null ? category.getName() : "";
 
-                            String activeInfo;
-                            if (room.getActiveId() == 0) {
-                                activeInfo = "Còn trống";
-                            } else {
-                                activeInfo = "Đã có người đặt";
-                            }
+                            String activeInfo = room.getActiveId() == 0
+                                    ? "Còn trống" : "Đã có người đặt";
+//                            if (room.getActiveId() == 0) {
+//                                activeInfo = "Còn trống";
+//                            } else {
+//                                activeInfo = "Đã có người đặt";
+//                            }
 
                             System.out.println("Id: " + room.getId()
                                     + " | Loại phòng: " + categoryName
