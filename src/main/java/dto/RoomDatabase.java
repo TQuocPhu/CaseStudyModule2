@@ -36,8 +36,8 @@ public class RoomDatabase {
             while ((line = bufferedReader.readLine()) != null){
                 String[] arr = line.split(",");
                 long id = Long.parseLong(arr[0]);
-                long categoryId = Long.parseLong(arr[2]);
-                long activeId = Long.parseLong(arr[3]);
+                long categoryId = Long.parseLong(arr[1]);
+                long activeId = Long.parseLong(arr[2]);
                 Room room = new Room(id, categoryId, activeId);
                 list.add(room);
             }

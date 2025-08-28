@@ -60,8 +60,8 @@ public class RoomManagement implements IManagement <Room> {
     public long getNextId() {
         List<Room> rooms = findAll();
         if (rooms.isEmpty()) return 1;
-        long maxId = rooms.stream().mapToLong(Room::getId).max().orElse(0);
-        return maxId + 1;
+//        long maxId = rooms.stream().mapToLong(Room::getId).max().orElse(0);
+        return rooms.get(rooms.size() - 1).getId() + 1;
     }
 
 }

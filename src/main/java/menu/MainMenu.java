@@ -14,14 +14,16 @@ public class MainMenu {
     private final RoomManagement roomManagement = new RoomManagement();
     private final CategoryManagement categoryManagement = new CategoryManagement();
     private final User user;
-    private final UserManagement userManagement;
+//    private final UserManagement userManagement;
 
-
-    public MainMenu(User user, UserManagement userManagement) {
+    public MainMenu(User user) {
         this.user = user;
-        this.userManagement = userManagement;
     }
 
+//    public MainMenu(User user, UserManagement userManagement) {
+//        this.user = user;
+//        this.userManagement = userManagement;
+//    }
 
     public void showMainMenu() {
         while (true) {
@@ -32,6 +34,7 @@ public class MainMenu {
             System.out.print("Chọn: ");
 
             String choice = Input.inputString();
+//            System.out.println("DEBUG choice = '" + choice + "'");
             try {
                 switch (choice) {
                     case "1" -> menuRoom();
@@ -146,9 +149,7 @@ public class MainMenu {
                             if (room.getActiveId() == 0) {
                                 activeInfo = "Còn trống";
                             } else {
-                                User bookedUser = userManagement.findById(room.getActiveId());
-                                String userName = (bookedUser != null) ? bookedUser.getUsername() : "Không xác định";
-                                activeInfo = "Đã đặt bởi: " + userName;
+                                activeInfo = "Đã có người đặt";
                             }
 
                             System.out.println("Id: " + room.getId()

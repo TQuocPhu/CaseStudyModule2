@@ -1,5 +1,6 @@
 package menu;
 
+import lib.Input;
 import management.UserManagement;
 import model.User;
 
@@ -32,7 +33,7 @@ public class LoginMenu {
                         User loggedInUser = login();
                         if (loggedInUser != null) {
                             System.out.println("✅ Đăng nhập thành công! Xin chào " + loggedInUser.getUsername());
-                            new menu.MainMenu(loggedInUser, userManagement).showMainMenu();
+                            new menu.MainMenu(loggedInUser).showMainMenu();
                         } else {
                             System.out.println("❌ Sai thông tin đăng nhập!");
                         }
@@ -44,7 +45,8 @@ public class LoginMenu {
                         System.out.println("❌ Lựa chọn không hợp lệ, vui lòng thử lại!");
                 }
             } catch (Exception e) {
-                System.out.println("❌ Lỗi: " + e.getMessage());
+                e.printStackTrace();
+                System.out.println("❌ Lỗi LoginMenu: " + e.getMessage());
             }
         }
     }
@@ -53,10 +55,12 @@ public class LoginMenu {
         try {
             System.out.println("\n--- ĐĂNG KÝ ---");
 
+            long id = userManagement.getNextId();
+
             String username;
             while (true) {
                 System.out.print("Nhập username (ít nhất 4 ký tự, không khoảng trắng): ");
-                username = scanner.nextLine();
+                username = Input.inputString();
                 if (!Pattern.matches("^[a-zA-Z0-9_]{4,}$", username)) {
                     System.out.println("❌ Username không hợp lệ!");
                     continue;
@@ -71,7 +75,7 @@ public class LoginMenu {
             String password;
             while (true) {
                 System.out.print("Nhập mật khẩu (ít nhất 8 ký tự, có chữ và số): ");
-                password = scanner.nextLine();
+                password = Input.inputString();
                 if (!Pattern.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", password)) {
                     System.out.println("❌ Mật khẩu phải có ít nhất 8 ký tự và chứa cả chữ và số!");
                     continue;
@@ -82,7 +86,7 @@ public class LoginMenu {
             String phone;
             while (true) {
                 System.out.print("Nhập số điện thoại (10 số, bắt đầu bằng 0): ");
-                phone = scanner.nextLine();
+                phone = Input.inputString();
                 if (!Pattern.matches("^0\\d{9}$", phone)) {
                     System.out.println("❌ Số điện thoại không hợp lệ!");
                     continue;
@@ -97,7 +101,7 @@ public class LoginMenu {
             String email;
             while (true) {
                 System.out.print("Nhập email: ");
-                email = scanner.nextLine();
+                email = Input.inputString();
                 if (!Pattern.matches("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$", email)) {
                     System.out.println("❌ Email không hợp lệ!");
                     continue;
@@ -112,7 +116,7 @@ public class LoginMenu {
             String gender;
             while (true) {
                 System.out.print("Nhập giới tính (Nam/Nữ/Khác): ");
-                gender = scanner.nextLine();
+                gender = Input.inputString();
                 if (gender.equalsIgnoreCase("Nam")
                         || gender.equalsIgnoreCase("Nữ")
                         || gender.equalsIgnoreCase("Khác")) {
@@ -123,7 +127,7 @@ public class LoginMenu {
 
             String role = "user"; // mặc định là user
 
-            User newUser = new User(username, password, phone, email, gender, role);
+            User newUser = new User(id, username, password, phone, email, gender, role);
             userManagement.add(newUser);
 
             System.out.println("✅ Đăng ký thành công!");
@@ -136,10 +140,10 @@ public class LoginMenu {
         try {
             System.out.println("\n--- ĐĂNG NHẬP ---");
             System.out.print("Nhập username/email/số điện thoại: ");
-            String identifier = scanner.nextLine();
+            String identifier = Input.inputString().trim();
 
             System.out.print("Nhập mật khẩu: ");
-            String password = scanner.nextLine();
+            String password = Input.inputString().trim();
 
             return userManagement.login(identifier, password);
         } catch (Exception e) {

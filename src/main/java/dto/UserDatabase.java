@@ -26,6 +26,85 @@ public class UserDatabase {
         return output;
     }
 
+//    public List<User> readData() {
+//        List<User> list = new ArrayList<>();
+//        long maxId = 0;
+//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.file))) {
+//            String line;
+//            while ((line = bufferedReader.readLine()) != null) {
+//                if (line.trim().isEmpty()) continue; // bỏ dòng trống
+//                String[] arr = line.split(",");
+//
+//                if (arr.length < 7) { // không đủ cột
+//                    System.out.println("Dữ liệu không hợp lệ: " + line);
+//                    continue;
+//                }
+//
+//                try {
+//                    long id = Long.parseLong(arr[0].trim());
+//                    String username = arr[1].trim();
+//                    String password = arr[2].trim();
+//                    String phone = arr[3].trim();
+//                    String email = arr[4].trim();
+//                    String gender = arr[5].trim();
+//                    String role = arr[6].trim();
+//
+//                    User user = new User(id, username, password, phone, email, gender, role);
+//                    list.add(user);
+//
+//                    if (id > maxId) {
+//                        maxId = id;
+//                    }
+//                } catch (NumberFormatException e) {
+//                    System.out.println("Lỗi ID không hợp lệ: " + line);
+//                }
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Lỗi đọc file: " + e.getMessage());
+//        }
+//
+//        // Cập nhật AUTO_ID để tránh trùng
+//        User.setAutoId(maxId + 1);
+//
+//        return list;
+//    }
+
+
+//    public List<User> readData() {
+//        List<User> list = new ArrayList<>();
+//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.file))) {
+//            String line;
+//            while ((line = bufferedReader.readLine()) != null) {
+//                if (line.trim().isEmpty()) continue; // bỏ dòng trống
+//                String[] arr = line.split(",");
+//
+//                if (arr.length < 7) { // không đủ cột
+//                    System.out.println("Dữ liệu không hợp lệ: " + line);
+//                    continue;
+//                }
+//
+//                try {
+//                    long id = Long.parseLong(arr[0].trim());
+//                    String username = arr[1].trim();
+//                    String password = arr[2].trim();
+//                    String phone = arr[3].trim();
+//                    String email = arr[4].trim();
+//                    String gender = arr[5].trim();
+//                    String role = arr[6].trim();
+//
+//                    User user = new User(id, username, password, phone, email, gender, role);
+//                    list.add(user);
+//                } catch (NumberFormatException e) {
+//                    System.out.println("Lỗi ID không hợp lệ: " + line);
+//                }
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Lỗi đọc file: " + e.getMessage());
+//        }
+//        return list;
+//    }
+
+
     public List<User> readData() {
         try{
             FileReader fileReader = new FileReader(this.file);

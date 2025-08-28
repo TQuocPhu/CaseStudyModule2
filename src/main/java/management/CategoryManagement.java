@@ -61,8 +61,8 @@ public class CategoryManagement implements IManagement<Category> {
     public long getNextId() {
         List<Category> categories = findAll();
         if (categories.isEmpty()) return 1;
-        long maxId = categories.stream().mapToLong(Category::getId).max().orElse(0);
-        return maxId + 1;
+//        long maxId = categories.stream().mapToLong(Category::getId).max().orElse(0);
+        return categories.get(categories.size() - 1).getId() + 1;
     }
 
 }

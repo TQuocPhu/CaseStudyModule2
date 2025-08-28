@@ -1,6 +1,7 @@
 package management;
 
 import dto.UserDatabase;
+import model.Room;
 import model.User;
 
 import java.util.ArrayList;
@@ -91,5 +92,11 @@ public class UserManagement {
             }
         }
         return null;
+    }
+
+    public long getNextId() {
+        if (this.users.isEmpty()) return 1;
+//        long maxId = rooms.stream().mapToLong(Room::getId).max().orElse(0);
+        return this.users.get(this.users.size() - 1).getId() + 1;
     }
 }
