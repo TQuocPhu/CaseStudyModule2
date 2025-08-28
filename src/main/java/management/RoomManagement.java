@@ -56,4 +56,12 @@ public class RoomManagement implements IManagement <Room> {
         }
         throw new Exception("Data Not Found");
     }
+
+    public long getNextId() {
+        List<Room> rooms = findAll();
+        if (rooms.isEmpty()) return 1;
+        long maxId = rooms.stream().mapToLong(Room::getId).max().orElse(0);
+        return maxId + 1;
+    }
+
 }

@@ -31,6 +31,16 @@ public class UserManagement {
         }
     }
 
+    public User findById(long id) {
+        for (User user : users) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+
     public User findUserByLoginIdentifier(String identifier) {
         for (User user : users) {
             if (user.getUsername().equals(identifier) ||

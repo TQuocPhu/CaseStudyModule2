@@ -57,4 +57,12 @@ public class CategoryManagement implements IManagement<Category> {
         }
         throw new Exception("Data Not Found");
     }
+
+    public long getNextId() {
+        List<Category> categories = findAll();
+        if (categories.isEmpty()) return 1;
+        long maxId = categories.stream().mapToLong(Category::getId).max().orElse(0);
+        return maxId + 1;
+    }
+
 }
